@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Module_3
+namespace _3_1
 {
     internal class Program
     {
@@ -9,18 +9,11 @@ namespace Module_3
 
         static void Main()
         {
+            Console.WriteLine("Приложение по определению чётного или нечётного числа");
+
             UserStringInput();
-
-            if (IsUserNumberEven())
-            {
-                Console.WriteLine("Введённое число является чётным");
-            }
-            else 
-            {
-                Console.WriteLine("Введённое число является нечётным");
-            }
-
-            userString = Console.ReadLine();
+            EvenNumberResult();
+            Console.ReadLine();
         }
 
         static void UserStringInput()
@@ -51,6 +44,18 @@ namespace Module_3
             }
 
             return false;
+        }
+
+        static void EvenNumberResult()
+        {
+            if (IsUserNumberEven())
+            {
+                Console.WriteLine("Введённое число является чётным");
+            }
+            else
+            {
+                Console.WriteLine("Введённое число является нечётным");
+            }
         }
 
     }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _3_3
 {
@@ -14,6 +10,8 @@ namespace _3_3
 
         static void Main(string[] args)
         {
+            Console.WriteLine("Проверка простого числа");
+
             UserStringInput();
             PrimeNumberCheck();
             PrimeNumberResult();

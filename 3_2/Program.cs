@@ -13,6 +13,7 @@ namespace _3_2
         {
             UserStringInput();
             Scoring();
+            ScoreResult();
             Console.ReadLine();
         }
 
@@ -77,6 +78,10 @@ namespace _3_2
                 }
             }
 
+        }
+
+        static void ScoreResult()
+        {
             Console.WriteLine($"Сумма ваших очков: {sum}");
         }
     }
