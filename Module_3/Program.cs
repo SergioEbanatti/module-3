@@ -38,7 +38,7 @@ namespace Module_3
             }
             else
             {
-                Console.WriteLine("Вы ввели не корректные данные!");
+                Console.WriteLine("Вы ввели некорректные данные!");
                 UserStringInput();
             }
         }
