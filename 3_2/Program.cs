@@ -4,10 +4,10 @@ namespace _3_2
 {
     internal class Program
     {
-        static string userString;
-        static int cardsNumber;
-        static int defaultPicCardsNominal = 10;
-        static int sum;
+        private static string userString;
+        private static int cardsNumber;
+        private static int defaultPicCardsNominal = 10;
+        private static int sum;
 
         static void Main()
         {
