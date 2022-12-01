@@ -8,6 +8,9 @@ namespace _3_2
         private static int cardsNumber;
         private static int defaultPicCardsNominal = 10;
         private static int sum;
+        private static bool isUserStringCorrect;
+        private static int minNumbersCardNominal = 2;
+        private static int maxNumbersCardNominal = 100;
 
         static void Main()
         {
@@ -19,65 +22,83 @@ namespace _3_2
 
         static void UserStringInput()
         {
-            Console.WriteLine("Вы играете в игру \"21\".\n" +
-                "На данном этапе будет выполнен подсчёт очков." +
-                "\nСколько карт у вас на руках?");
-
-            userString = Console.ReadLine();
-            UserStringCheck();
-        }
-
-        static void UserStringCheck()
-        {
-            if (int.TryParse(userString, out int result) && result > 0)
+            //Перенёс проверку введённой пользователем строки в цикл.
+            while (!isUserStringCorrect)
             {
-                cardsNumber = result;
-            }
-            else
-            {
-                Console.WriteLine("Вы ввели некорректные данные!");
-                UserStringInput();
+                Console.WriteLine("Вы играете в игру \"21\".\n" +
+                        "На данном этапе будет выполнен подсчёт очков." +
+                        "\nСколько карт у вас на руках?");
+
+                userString = Console.ReadLine();
+
+                if (int.TryParse(userString, out int result) && result > 0) //Проверка является ли введённая строка корректным числом.
+                {
+                    cardsNumber = result;
+                    isUserStringCorrect = true;
+                }
+                else
+                {
+                    Console.WriteLine("Вы ввели некорректные данные!");
+                }
             }
         }
 
         static void Scoring()
         {
+
             for (int i = 1; i <= cardsNumber; i++)
             {
                 Console.WriteLine($"Введите номинал карты №{i}");
-                var nominal = Console.ReadLine();
 
-                switch (nominal)
+                string userInput = Console.ReadLine();
+                int parsedUserInput;
+
+                // Проверка ввёл ли пользователь число.
+                if (int.TryParse(userInput, out parsedUserInput))
+
                 {
-                    case "2":
-                    case "3":
-                    case "4":
-                    case "5":
-                    case "6":
-                    case "7":
-                    case "8":
-                    case "9":
-                    case "10":
-                        sum += int.Parse(nominal);
-                        break;
-                    case "J":
-                    case "j":
-                    case "Q":
-                    case "q":
-                    case "K":
-                    case "k":
-                    case "T":
-                    case "t":
-                        sum += defaultPicCardsNominal;
-                        break;
-                    default:
-                        Console.WriteLine("Вы ввели некорректные данные! Попробуйте снова.");
-                        i = 0;
-                        sum = 0;
-                        break;
+                    // Пользователь ввёл число, продолжаем работу с parsedUserInput. Входит ли число в диапазон возможных карт.
+                    if (parsedUserInput >= minNumbersCardNominal && parsedUserInput <= maxNumbersCardNominal)
+                    {
+                        isUserStringCorrect = true;
+                        sum += parsedUserInput;
+                    }
+                    else
+                    {
+                        isUserStringCorrect = false;
+                    }
+                }
+
+                else
+
+                {
+                    // Пользователь ввёл не число, это картинка или неверная карта.
+                    switch (userInput)
+                    {
+                        case "J":
+                        case "j":
+                        case "Q":
+                        case "q":
+                        case "K":
+                        case "k":
+                        case "T":
+                        case "t":
+                            sum += defaultPicCardsNominal;
+                            isUserStringCorrect = true;
+                            break;
+                        default:
+                            isUserStringCorrect = false;
+                            break;
+                    }
+                }
+
+                if (!isUserStringCorrect)
+                {
+                    Console.WriteLine("Вы ввели некорректные данные! Попробуйте снова.");
+                    i = 0;
+                    sum = 0;
                 }
             }
-
         }
 
         static void ScoreResult()
